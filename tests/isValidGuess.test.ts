@@ -58,8 +58,9 @@ describe('isValidGuess', () => {
     expect(isValidGuess('0', 1, 10)).toBe(true);
   });
 
-  test('accepts binary guess for base 2', () => {
-    expect(isValidGuess('1010', 4, 2)).toBe(true);
+  test('accepts binary guess with unique digits for base 2', () => {
+    expect(isValidGuess('10', 2, 2)).toBe(true);
+    expect(isValidGuess('01', 2, 2)).toBe(true);
   });
 
   test('rejects binary guess containing 2', () => {
@@ -71,8 +72,9 @@ describe('isValidGuess', () => {
   });
 
   test('rejects non-string input', () => {
-    expect(isValidGuess(null, 4, 10)).toBe(false);
-    expect(isValidGuess(1234, 4, 10)).toBe(false);
+    const asUnknown = (v: unknown) => v;
+    expect(isValidGuess(asUnknown(null) as string, 4, 10)).toBe(false);
+    expect(isValidGuess(asUnknown(1234) as string, 4, 10)).toBe(false);
   });
 
   test('rejects guess containing spaces', () => {
