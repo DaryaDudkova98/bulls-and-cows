@@ -20,13 +20,23 @@ describe('generateSecret', () => {
   });
 
   test('should be deterministic when a mocked random function is provided', () => {
-    const mockRandom = () => 0.99;
+    const mockRandom = (() => {
+      const values = [0.99, 0.89, 0.79, 0.69];
+      let i = 0;
+      return () => values[i++];
+    })();
+
     const secret = generateSecret(4, 10, mockRandom);
     expect(secret).toBe('9876');
   });
 
   test('should preserve leading zeros', () => {
-    const mockRandom = () => 0;
+    const mockRandom = (() => {
+      const values = [0.0, 0.1];
+      let i = 0;
+      return () => values[i++];
+    })();
+
     const secret = generateSecret(2, 10, mockRandom);
     expect(secret).toBe('01');
   });
