@@ -1,4 +1,5 @@
 import { createNavbar } from './app/components/navbar';
+import { createFooter } from './app/components/footer';
 
 const app = document.getElementById('app');
 
@@ -7,3 +8,4 @@ if (!app) {
 }
 
 app.appendChild(createNavbar());
+app.appendChild(createFooter());
