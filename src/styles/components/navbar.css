@@ -1,0 +1,107 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  height: 160px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar__logo-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar__logo-bg {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(125, 132, 120, 0.5);
+  box-shadow: inset 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}
+
+.navbar__logo-img {
+  position: relative;
+  z-index: 1;
+  width: 145px;
+  height: auto;
+  object-fit: contain;
+}
+
+.navbar__buttons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar__button {
+  border: none;
+  border-top: 2px solid var(--color-border-btn);
+  border-bottom: 2px solid var(--color-border-btn);
+  border-left: 6px solid var(--color-border-btn);
+  border-right: 6px solid var(--color-border-btn);
+  padding: 2px 16px;
+  border-radius: 40px;
+  background-color: var(--color-fill-btn);
+  width: 220px;
+  height: 60px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.navbar__button:hover {
+  border-color: var(--color-border-btn-hover);
+  background-color: var(--color-fill-btn-hover);
+  box-shadow: 0 0 12px rgba(255, 205, 119, 0.4);
+}
+
+.navbar__button:active {
+  transform: scale(0.97);
+}
+
+.navbar__buttons-leaderboard {
+  width: 240px;
+}
+
+.navbar__buttons-theme {
+  width: 100px;
+  height: 60px;
+  padding: 0;
+  border: 2px solid rgba(182, 159, 120, 0.8);
+  border-radius: 40px;
+  background-color: transparent;
+  color: rgba(255, 205, 119, 0.8);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.navbar__buttons-theme:hover {
+  color: #FFCD77;
+}
+
+.navbar__buttons-theme:active {
+  transform: scale(0.95);
+}
+
+.navbar__icon {
+  width: 32px;
+  height: 32px;
+}
