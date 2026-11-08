@@ -6,10 +6,12 @@ import themeDark from '../../img/basil--moon-solid.svg?raw';
 
 const THEME_KEY = 'bulls-and-cows-theme';
 
-export function createNavbar(): HTMLElement {
+// ✅ Принимаем коллбэк onLeaderboard
+export function createNavbar(onLeaderboard?: () => void): HTMLElement {
   const nav = document.createElement('nav');
   nav.className = 'navbar';
 
+  // --- Логотип ---
   const logoBlock = document.createElement('div');
   logoBlock.className = 'navbar__logo';
 
@@ -34,9 +36,11 @@ export function createNavbar(): HTMLElement {
   logoBlock.appendChild(logo);
   logoBlock.appendChild(logoText);
 
+  // --- Кнопки ---
   const listButtons = document.createElement('div');
   listButtons.className = 'navbar__buttons';
 
+  // --- Кнопка темы ---
   const btnTheme = document.createElement('button');
   btnTheme.className = 'navbar__button navbar__buttons-theme';
   btnTheme.type = 'button';
@@ -68,11 +72,18 @@ export function createNavbar(): HTMLElement {
     applyTheme(!isLight());
   });
 
+  // --- Кнопка Leaderboard ---
   const btnLeaderboard = document.createElement('button');
   btnLeaderboard.className = 'navbar__button navbar__buttons-leaderboard';
   btnLeaderboard.type = 'button';
   btnLeaderboard.textContent = 'leaderboard';
 
+  // ✅ Добавляем обработчик
+  btnLeaderboard.addEventListener('click', () => {
+    onLeaderboard?.();
+  });
+
+  // --- Кнопка New Game ---
   const btnNewGame = document.createElement('button');
   btnNewGame.className = 'navbar__button navbar__buttons-newGame';
   btnNewGame.type = 'button';
