@@ -1,6 +1,9 @@
 @import './components/navbar.css';
 @import './components/footer.css';
 @import './pages/setUp.css';
+@import './components/hint.css';
+@import './components/attemptHistory.css';
+@import './pages/game.css';
 
 *,
 *::before,
