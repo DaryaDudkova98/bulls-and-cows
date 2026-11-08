@@ -12,7 +12,13 @@ const app = document.getElementById('app')!;
 
 const leaderboard = createLeaderboard();
 
-const nav = createNavbar(() => leaderboard.open());
+const nav = createNavbar(
+  () => leaderboard.open(),
+  () => {
+    leaderboard.close();
+    showSetUp();
+  }
+);
 
 const main = document.createElement('main');
 main.className = 'main';
@@ -27,6 +33,7 @@ app.appendChild(leaderboard.root);
 let currentGame: GameState | null = null;
 
 function showSetUp() {
+  currentGame = null;
   main.replaceChildren();
   main.appendChild(
     createSetUp((config) => {
