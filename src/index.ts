@@ -38,7 +38,7 @@ function showSetUp() {
   main.appendChild(
     createSetUp((config) => {
       const secret = generateSecret(config.length, config.base);
-      currentGame = startNewGame({ length: config.length, base: config.base }, secret, 10);
+      currentGame = startNewGame({ length: config.length, base: config.base }, secret);
       showGame();
     })
   );

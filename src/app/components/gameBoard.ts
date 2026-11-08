@@ -86,16 +86,14 @@ export function createGameBoard(
   let resultSaved = false;
 
   const saveResultIfNeeded = (finalState: GameState) => {
-    if (resultSaved || finalState.status === 'playing') return;
+    if (resultSaved || finalState.status !== 'won') return;
     resultSaved = true;
 
-    if (finalState.status === 'won') {
-      addScore(finalState.settings.base, {
-        name: 'Guest',
-        attempts: finalState.history.length,
-        time: getElapsedSeconds(finalState),
-      });
-    }
+    addScore(finalState.settings.base, {
+      name: 'Guest',
+      attempts: finalState.history.length,
+      time: getElapsedSeconds(finalState),
+    });
   };
 
   const handleCheck = () => {
@@ -124,16 +122,14 @@ export function createGameBoard(
 
     if (newState.status === 'won') {
       const seconds = getElapsedSeconds(newState);
-      message.textContent = `You won in ${newState.history.length} attempts (${seconds}s)!`;
+      const attempts = newState.history.length;
+      const attemptsWord = attempts === 1 ? 'attempt' : 'attempts';
+
+      message.textContent = `You won in ${attempts} ${attemptsWord} (${seconds}s)!`;
       message.classList.add('game-board__message--success');
       message.hidden = false;
       lockInput();
       saveResultIfNeeded(newState);
-    } else if (newState.status === 'lost') {
-      message.textContent = `You lost. The secret was: ${newState.secret}`;
-      message.classList.add('game-board__message--error');
-      message.hidden = false;
-      lockInput();
     }
   };
 
