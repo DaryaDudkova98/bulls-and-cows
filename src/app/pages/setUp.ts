@@ -1,7 +1,7 @@
 import '../../styles/pages/setUp.css';
 
 import arrowDown from '../../img/dashicons--arrow-down.svg?raw';
-import questionIcon from '../../img/question.jpg';
+import { createHint } from '../components/hint';
 
 const LENGTH_OPTIONS = [2, 3, 4, 5, 6];
 
@@ -105,22 +105,7 @@ export function createSetUp(
   fieldsRow.appendChild(lengthField);
   fieldsRow.appendChild(systemField);
 
-  const hintBlock = document.createElement('div');
-  hintBlock.className = 'setUp__hint';
-
-  const hintContent = document.createElement('div');
-  hintContent.className = 'setUp__hint-content';
-
-  const cardsPreview = document.createElement('div');
-  cardsPreview.className = 'setUp__cards';
-
-  const hintText = document.createElement('p');
-  hintText.className = 'setUp__hint-text';
-
-  hintContent.appendChild(cardsPreview);
-  hintContent.appendChild(hintText);
-
-  hintBlock.appendChild(hintContent);
+  const hint = createHint({ length: 2, base: 2 });
 
   const updateUI = () => {
     const base = parseInt(setUpSystem.value, 10);
@@ -136,27 +121,7 @@ export function createSetUp(
       setUpLength.value = String(length);
     }
 
-    let rangeText = '';
-    if (base === 2) rangeText = '0 to 1';
-    else if (base === 8) rangeText = '0 to 7';
-    else if (base === 10) rangeText = '0 to 9';
-    else if (base === 16) rangeText = '0 to 9 and A to F';
-
-    hintText.textContent = `The number consists of ${length} unique digits from ${rangeText}.`;
-
-    cardsPreview.innerHTML = '';
-    for (let i = 0; i < length; i++) {
-      const card = document.createElement('div');
-      card.className = 'setUp__card';
-
-      const cardBack = document.createElement('img');
-      cardBack.className = 'setUp__card-back';
-      cardBack.src = questionIcon;
-      cardBack.alt = '';
-
-      card.appendChild(cardBack);
-      cardsPreview.appendChild(card);
-    }
+    hint.update({ length, base });
   };
 
   setUpLength.addEventListener('change', updateUI);
@@ -169,7 +134,7 @@ export function createSetUp(
   btnStartGame.textContent = 'Start Game';
 
   formSetUp.appendChild(fieldsRow);
-  formSetUp.appendChild(hintBlock);
+  formSetUp.appendChild(hint.root);
   formSetUp.appendChild(btnStartGame);
 
   formSetUp.addEventListener('submit', (event) => {
