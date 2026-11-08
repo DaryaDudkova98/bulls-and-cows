@@ -1,5 +1,6 @@
 @import './components/navbar.css';
 @import './components/footer.css';
+@import './pages/setUp.css';
 
 *,
 *::before,
@@ -99,7 +100,6 @@ html.light {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 32px 0;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

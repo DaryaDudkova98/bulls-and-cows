@@ -1,0 +1,215 @@
+.setUp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 50px 60px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.setUp__title {
+  font-size: 1.6rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+.setUp__subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0;
+  font-weight: normal;
+}
+
+.setUp__form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 100%;
+}
+
+.setUp__fields-row {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.setUp__fields-row .setUp__field {
+  flex: 1;
+  min-width: 0;
+}
+
+.setUp__field {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.setUp__label {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.setUp__input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 2px solid var(--color-border-btn);
+  border-radius: 40px;
+  background-color: var(--color-fill-btn);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+}
+
+.setUp__input:focus {
+  outline: none;
+  border-color: var(--color-border-btn-hover);
+  box-shadow: 0 0 10px rgba(255, 205, 119, 0.3);
+}
+
+.setUp__input[type='number']::-webkit-inner-spin-button,
+.setUp__input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.setUp__select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.setUp__select {
+  cursor: pointer;
+  padding-right: 48px;
+  text-align: left;
+}
+
+.setUp__select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.setUp__select-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.setUp__submit {
+  padding: 16px 32px;
+  border: none;
+  border-top: 2px solid var(--color-border-btn);
+  border-bottom: 2px solid var(--color-border-btn);
+  border-left: 6px solid var(--color-border-btn);
+  border-right: 6px solid var(--color-border-btn);
+  padding: 2px 16px;
+  border-radius: 40px;
+  height: 60px;
+  background-color: var(--color-fill-btn);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.setUp__submit:hover {
+  background-color: var(--color-fill-btn-hover);
+  box-shadow: 0 0 12px rgba(255, 205, 119, 0.4);
+}
+
+.setUp__submit:active {
+  transform: scale(0.97);
+}
+
+.setUp__hint {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background-color: var(--color-fill-btn);
+  border: 1px solid var(--color-border-btn);
+  border-radius: 16px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.setUp__hint-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.setUp__hint-text {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.setUp__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.setUp__card {
+  position: relative;
+  width: 50px;
+  height: 70px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid var(--color-border-btn);
+  background-color: var(--color-fill-btn);
+  animation: cardAppear 0.3s ease-out;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.setUp__card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.setUp__card:hover {
+  border-color: var(--color-border-btn-hover);
+  box-shadow: 0 0 10px rgba(255, 205, 119, 0.4);
+  transform: translateY(-2px);
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
