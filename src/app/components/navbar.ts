@@ -2,6 +2,9 @@ import '../../styles/components/navbar.css';
 
 import logoImage from '../../img/bulls-and-cows.png';
 import themeLight from '../../img/sun.svg?raw';
+import themeDark from '../../img/basil--moon-solid.svg?raw';
+
+const THEME_KEY = 'bulls-and-cows-theme';
 
 export function createNavbar(): HTMLElement {
   const nav = document.createElement('nav');
@@ -36,20 +39,43 @@ export function createNavbar(): HTMLElement {
 
   const btnTheme = document.createElement('button');
   btnTheme.className = 'navbar__button navbar__buttons-theme';
+  btnTheme.type = 'button';
+  btnTheme.setAttribute('aria-label', 'Toggle theme');
 
-  btnTheme.insertAdjacentHTML('beforeend', themeLight);
+  const isLight = () => document.documentElement.classList.contains('light');
 
-  const svgIcon = btnTheme.querySelector('svg');
-  if (svgIcon) {
-    svgIcon.classList.add('navbar__icon');
-  }
+  const updateThemeIcon = () => {
+    const iconSvg = isLight() ? themeDark : themeLight;
+    btnTheme.replaceChildren();
+    btnTheme.insertAdjacentHTML('beforeend', iconSvg);
+
+    const svg = btnTheme.querySelector('svg');
+    if (svg) svg.classList.add('navbar__icon');
+  };
+
+  const applyTheme = (light: boolean) => {
+    document.documentElement.classList.toggle('light', light);
+    localStorage.setItem(THEME_KEY, light ? 'light' : 'dark');
+    updateThemeIcon();
+  };
+
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  const startLight = savedTheme === 'light';
+  document.documentElement.classList.toggle('light', startLight);
+  updateThemeIcon();
+
+  btnTheme.addEventListener('click', () => {
+    applyTheme(!isLight());
+  });
 
   const btnLeaderboard = document.createElement('button');
   btnLeaderboard.className = 'navbar__button navbar__buttons-leaderboard';
+  btnLeaderboard.type = 'button';
   btnLeaderboard.textContent = 'leaderboard';
 
   const btnNewGame = document.createElement('button');
   btnNewGame.className = 'navbar__button navbar__buttons-newGame';
+  btnNewGame.type = 'button';
   btnNewGame.textContent = 'new game';
 
   listButtons.appendChild(btnTheme);
