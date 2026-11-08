@@ -69,11 +69,6 @@ export function createGame(initialState: GameState, onBack: () => void): HTMLEle
   const handleStateChange = (newState: GameState) => {
     currentState = newState;
     updateStats(currentState);
-
-    if (currentState.status !== 'playing') {
-      boardWrapper.replaceChildren();
-      boardWrapper.appendChild(createGameBoard(currentState, handleStateChange, onBack));
-    }
   };
 
   boardWrapper.appendChild(createGameBoard(currentState, handleStateChange, onBack));

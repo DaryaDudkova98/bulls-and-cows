@@ -10,6 +10,7 @@ export type GameState = {
   history: Attempt[];
   status: Status;
   attemptsLeft: number;
+  startedAt: number;
 };
 
 export const startNewGame = (
@@ -22,6 +23,7 @@ export const startNewGame = (
   history: [],
   status: 'playing',
   attemptsLeft: maxAttempts,
+  startedAt: Date.now(),
 });
 
 export const addAttempt = (state: GameState, guess: string): GameState => {
@@ -57,4 +59,8 @@ export const updateSettings = (
   history: [],
   status: 'playing',
   attemptsLeft: maxAttempts,
+  startedAt: Date.now(),
 });
+
+export const getElapsedSeconds = (state: GameState): number =>
+  Math.round((Date.now() - state.startedAt) / 1000);

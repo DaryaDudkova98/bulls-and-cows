@@ -2,7 +2,8 @@ import '../../styles/components/gameBoard.css';
 
 import type { GameState } from '../../gameState';
 import { isValidGuess } from '../../isValidGuess';
-import { addAttempt } from '../../gameState';
+import { addAttempt, getElapsedSeconds } from '../../gameState';
+import { addScore } from '../../leaderboardStorage';
 import { createHint } from './hint';
 import { createAttemptHistory } from './attemptHistory';
 
@@ -73,7 +74,33 @@ export function createGameBoard(
   historyColumn.appendChild(historyTitle);
   historyColumn.appendChild(historyScroll);
 
+  const lockInput = () => {
+    input.disabled = true;
+    checkBtn.disabled = true;
+  };
+
+  if (state.status !== 'playing') {
+    lockInput();
+  }
+
+  let resultSaved = false;
+
+  const saveResultIfNeeded = (finalState: GameState) => {
+    if (resultSaved || finalState.status === 'playing') return;
+    resultSaved = true;
+
+    if (finalState.status === 'won') {
+      addScore(finalState.settings.base, {
+        name: 'Guest',
+        attempts: finalState.history.length,
+        time: getElapsedSeconds(finalState),
+      });
+    }
+  };
+
   const handleCheck = () => {
+    if (state.status !== 'playing') return;
+
     const guess = input.value.trim().toLowerCase();
 
     if (!isValidGuess(guess, state.settings.length, state.settings.base)) {
@@ -96,17 +123,17 @@ export function createGameBoard(
     onStateChange(newState);
 
     if (newState.status === 'won') {
-      message.textContent = `You won in ${newState.history.length} attempts!`;
+      const seconds = getElapsedSeconds(newState);
+      message.textContent = `You won in ${newState.history.length} attempts (${seconds}s)!`;
       message.classList.add('game-board__message--success');
       message.hidden = false;
-      input.disabled = true;
-      checkBtn.disabled = true;
+      lockInput();
+      saveResultIfNeeded(newState);
     } else if (newState.status === 'lost') {
       message.textContent = `You lost. The secret was: ${newState.secret}`;
       message.classList.add('game-board__message--error');
       message.hidden = false;
-      input.disabled = true;
-      checkBtn.disabled = true;
+      lockInput();
     }
   };
 
