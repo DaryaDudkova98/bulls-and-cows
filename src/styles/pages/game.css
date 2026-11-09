@@ -1,0 +1,104 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 50px 60px;
+  width: 100%;
+}
+
+.game__title {
+  font-size: 1.6rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.game__info {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+.game__board {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border: 2px dashed var(--color-border-btn);
+  border-radius: 16px;
+  color: var(--color-text-muted);
+  background-color: var(--color-fill-btn);
+}
+
+.game__back {
+  padding: 16px 32px;
+  border: none;
+  border-top: 2px solid var(--color-border-btn);
+  border-bottom: 2px solid var(--color-border-btn);
+  border-left: 6px solid var(--color-border-btn);
+  border-right: 6px solid var(--color-border-btn);
+  border-radius: 40px;
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-fill-btn);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.game__back:hover {
+  background-color: var(--color-fill-btn-hover);
+  box-shadow: 0 0 12px rgba(255, 205, 119, 0.4);
+}
+
+.game__back:active {
+  transform: scale(0.97);
+}
+
+.game__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.game__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border: 2px solid var(--color-border-btn);
+  border-radius: 16px;
+  background-color: var(--color-fill-btn);
+}
+
+.game__stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.game__stat-value {
+  font-family: 'Press Start 2P', monospace, sans-serif;
+  font-size: 1.6rem;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.game__stat-value--bulls {
+  color: var(--color-border-btn-hover);
+}
+
+.game__stat-value--cows {
+  color: #8ecae6;
+}

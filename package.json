@@ -1,0 +1,48 @@
+{
+  "name": "bulls-and-cows",
+  "version": "1.0.0",
+  "description": "Bulls and Cows is a secret number guessing game played with unique digits. The computer guesses a number of a given length in a given numeral system, the player enters guesses, and after each attempt receives a hint: how many digits are guessed and in their correct position (bulls), and how many are guessed but in the wrong position (cows). The game continues until the player guesses the number — there is no attempt limit, but the number of attempts and time affect the leaderboard result.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "prepare": "husky",
+    "deploy": "vite build && gh-pages -d dist"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaryaDudkova98/bulls-and-cows.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaryaDudkova98/bulls-and-cows/issues"
+  },
+  "homepage": "https://github.com/DaryaDudkova98/bulls-and-cows#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.0"
+  }
+}
